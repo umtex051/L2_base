@@ -1,0 +1,13 @@
+function ipv4Parser(ip, mask){
+  const ipParts = ip.split(".");
+  const maskParts = mask.split(".");
+  const network = [];
+  const host = [];
+  for (let i = 0; i < 4; i++) {
+    const a = Number(ipParts[i]);
+    const m = Number(maskParts[i]);
+    network.push(a & m);
+    host.push(a & (255 - m));
+  }
+  return [network.join ("."), host.join(".")];
+}
