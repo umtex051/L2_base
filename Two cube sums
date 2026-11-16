@@ -1,0 +1,11 @@
+function hasTwoCubeSums(n) {
+	let count = 0;
+  for (let a = 1; a * a * a < n; a++) {
+    const rest = n - a * a * a;
+    const b = Math.round(Math.cbrt(rest));
+    if (b > a && b * b * b === rest) {
+      count++;
+    }
+  }
+  return count >= 2;
+}
