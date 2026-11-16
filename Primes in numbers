@@ -1,0 +1,21 @@
+function primeFactors(n){
+ let result = "";
+  let p = 2;
+  while (p * p <= n) {
+    let count = 0;
+    while ( n % p === 0) {
+      n = n / p;
+      count++;
+    }
+    if (count === 1) {
+      result += "(" + p + ")";
+    } else if ( count > 1) {
+      result += "(" + p + "**" + count + ")";
+    }
+    p++
+  }
+  if (n > 1) {
+    result += "(" + n + ")";
+  }
+  return result;
+}
