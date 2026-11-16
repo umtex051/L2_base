@@ -1,0 +1,28 @@
+function howManyTimes(time1,time2){
+  function toSeconds(text) {
+    const p = text.split(/[- :]/).map(Number);
+    return Date.UTC(p[0], p[1] - 1, p[2], p[3], p[4], p[5]) / 1000;
+  }
+
+  const start = toSeconds(time1);
+  const end = toSeconds(time2);
+  let total = 0;
+
+  for (let t = Math.floor(start / 1800) * 1800; t < end; t += 1800) {
+    const date = new Date(t * 1000);
+    let strikes = 1;
+    if (date.getUTCMinutes() === 0) {
+      strikes = date.getUTCHours() % 12;
+      if (strikes === 0) {
+        strikes = 12;
+      }
+    }
+    const from = Math.max(t, start);
+    const to = Math.min(t + strikes, end);
+    if (to > from) {
+      total += to - from;
+    }
+  }
+  return total;
+  
+}
